@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>磁盘空间分析器</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="app-header">
+        <div class="brand">
+            <svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor">
+                <path d="M.75 3h14.5a.75.75 0 0 1 .75.75v8.5a.75.75 0 0 1-.75.75H.75a.75.75 0 0 1-.75-.75v-8.5A.75.75 0 0 1 .75 3Zm1.5 1.5v7h11.5v-7H2.25Zm1.5 1.5h3v1h-3V6Zm0 2.5h5v1h-5V8.5Z" />
+            </svg>
+            <span>磁盘空间分析器</span>
+        </div>
+        <div class="controls">
+            <select id="drive-select" class="select" title="快速选择盘符"></select>
+            <input type="text" id="path-input" class="input"
+                   placeholder="输入或粘贴要扫描的路径，例如 C:\Users\你的用户名" />
+            <button id="scan-btn" class="btn btn-primary">开始扫描</button>
+        </div>
+    </header>
+
+    <main>
+        <section id="progress-section" class="progress-section hidden">
+            <div class="progress-info">
+                <span id="progress-status">准备中…</span>
+                <span id="progress-summary" class="muted"></span>
+            </div>
+            <div class="progress-bar">
+                <div id="progress-fill" class="progress-fill"></div>
+            </div>
+            <div id="progress-path" class="progress-path muted"></div>
+        </section>
+
+        <nav class="tabs">
+            <button class="tab-btn active" data-tab="tree">文件夹树</button>
+            <button class="tab-btn" data-tab="files">最大文件</button>
+            <button class="tab-btn" data-tab="types">文件类型</button>
+        </nav>
+
+        <section id="tab-tree" class="tab-panel active">
+            <div id="tree-container" class="tree-container">
+                <div class="empty-state">
+                    <div class="empty-icon">📊</div>
+                    <p>输入路径或选择盘符，点击「开始扫描」</p>
+                    <p class="muted">扫描结果将在这里以文件夹树的形式展示</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="tab-files" class="tab-panel">
+            <div id="files-container" class="list-container">
+                <div class="empty-state"><p>尚未扫描</p></div>
+            </div>
+        </section>
+
+        <section id="tab-types" class="tab-panel">
+            <div id="types-container" class="list-container">
+                <div class="empty-state"><p>尚未扫描</p></div>
+            </div>
+        </section>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>
